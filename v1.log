@@ -1,0 +1,387 @@
+ 
+*********** 16 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 16
+Execution time: 0.862677
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 16
+Execution time: 0.765772
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 16
+Execution time: 0.767801
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 16
+Execution time: 0.889269
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 16
+Execution time: 1.07027
+Sum: 8e+15
+=====================================================
+ 
+*********** 18 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 18
+Execution time: 0.653205
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 18
+Execution time: 0.872151
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 18
+Execution time: 0.760311
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 18
+Execution time: 0.739128
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 18
+Execution time: 0.756109
+Sum: 8e+15
+=====================================================
+ 
+*********** 20 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 20
+Execution time: 0.877868
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 20
+Execution time: 0.847245
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 20
+Execution time: 0.881535
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 20
+Execution time: 0.83504
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 20
+Execution time: 0.875513
+Sum: 8e+15
+=====================================================
+ 
+*********** 22 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 22
+Execution time: 0.888375
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 22
+Execution time: 0.783217
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 22
+Execution time: 0.751965
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 22
+Execution time: 0.777671
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 22
+Execution time: 0.74801
+Sum: 8e+15
+=====================================================
+ 
+*********** 24 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 24
+Execution time: 0.869556
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 24
+Execution time: 0.758726
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 24
+Execution time: 0.719941
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 24
+Execution time: 0.778132
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 24
+Execution time: 0.71918
+Sum: 8e+15
+=====================================================
+ 
+*********** 26 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 26
+Execution time: 0.750467
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 26
+Execution time: 0.776414
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 26
+Execution time: 0.872586
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 26
+Execution time: 0.57039
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 26
+Execution time: 0.58741
+Sum: 8e+15
+=====================================================
+ 
+*********** 28 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 28
+Execution time: 0.620121
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 28
+Execution time: 0.607545
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 28
+Execution time: 0.597208
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 28
+Execution time: 0.604227
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 28
+Execution time: 0.593366
+Sum: 8e+15
+=====================================================
+ 
+*********** 30 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 30
+Execution time: 0.604957
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 30
+Execution time: 0.623919
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 30
+Execution time: 0.640074
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 30
+Execution time: 0.615931
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 30
+Execution time: 0.628269
+Sum: 8e+15
+=====================================================
+ 
+*********** 32 ***********
+ 
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 32
+Execution time: 0.628678
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 32
+Execution time: 0.612064
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 32
+Execution time: 0.633668
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 32
+Execution time: 0.607858
+Sum: 8e+15
+=====================================================
+=====================================================
+Optimized Distributed Matrix Multiplication
+Matrix Size N: 2000
+Number of Processes: 16
+Block Size: 32
+Execution time: 0.599036
+Sum: 8e+15
+=====================================================
