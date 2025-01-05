@@ -3,7 +3,10 @@
 #include <ctime>
 #include <mpi.h>
 
+// pass -DN <val> to define N without editing this file
+#ifndef N
 #define N 2000 // Matrix dimension
+#endif
 
 void init(double*& A, double*& B, double*& C) {
     A = new double[N * N];
@@ -23,20 +26,15 @@ int main() {
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
-    // Calculate rows per process
     int rows_per_proc = N / size;
-    int remainder = N % size;
-    
-    // Adjust rows for this process (handle non-even division)
+    int remainder = N % size; 
     int my_rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
     int my_offset = rank * rows_per_proc + std::min(rank, remainder);
 
-    // Allocate local arrays
     double* A_local = new double[my_rows * N];
     double* B = new double[N * N];
     double* C_local = new double[my_rows * N];
     
-    // Master process initializes the matrices
     double *A = nullptr, *C = nullptr;
     if (rank == 0) {
         init(A, B, C);
@@ -44,24 +42,21 @@ int main() {
 
     double start = MPI_Wtime();
 
-    // Broadcast matrix B to all processes
+    // each cmputer has to get matrx B
     MPI_Bcast(B, N * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-    // Scatter rows of A to all processes
     int* sendcounts = new int[size];
     int* displs = new int[size];
     
-    // Calculate send counts and displacements for scatterv
     for (int i = 0; i < size; i++) {
         sendcounts[i] = (i < remainder ? rows_per_proc + 1 : rows_per_proc) * N;
         displs[i] = (i * rows_per_proc + std::min(i, remainder)) * N;
     }
 
-    MPI_Scatterv(A, sendcounts, displs, MPI_DOUBLE,
-                 A_local, my_rows * N, MPI_DOUBLE,
-                 0, MPI_COMM_WORLD);
+    // We distribute each row of A to a different computer
+    MPI_Scatterv(A, sendcounts, displs, MPI_DOUBLE, A_local, my_rows * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-    // Perform local matrix multiplication
+    // THis is the actual mult. O(N^3) 
     for (int i = 0; i < my_rows; i++) {
         for (int j = 0; j < N; j++) {
             C_local[i * N + j] = 0;
@@ -71,7 +66,7 @@ int main() {
         }
     }
 
-    // Gather results back to master process
+    // send the results to the master proc.
     MPI_Gatherv(C_local, my_rows * N, MPI_DOUBLE,
                 C, sendcounts, displs, MPI_DOUBLE,
                 0, MPI_COMM_WORLD);
