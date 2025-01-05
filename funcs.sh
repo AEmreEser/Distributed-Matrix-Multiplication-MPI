@@ -5,7 +5,7 @@ compile() {
 }
 
 run() {
-	mpirun -np $1 $2;
+	mpirun --mca btl ^openib -np $1 $2;
 }
 
 comprun() {
