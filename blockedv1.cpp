@@ -13,6 +13,10 @@
 #define BLOCK_SIZE 24  
 #endif
 
+/** 
+    Ahmet Emre Eser - 2025 
+*/
+
 using namespace std;
 
 void init(double*& A, double*& B, double*& C) {
