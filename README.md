@@ -15,4 +15,5 @@ Block Optimized, 8 processes, averages over 5 runs per block
 | 64        | 1.05664               |
 
 Without Blocking, 8 processes, average over 5 runs
+
 Average Execution Time: 3.82678 secs
