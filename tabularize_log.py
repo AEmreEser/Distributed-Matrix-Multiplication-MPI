@@ -43,18 +43,26 @@ def generate_latex_table(averages):
     latex_table += "\\hline\n\\end{tabular}\n\\caption{Execution Time Averages by Block Size}\n\\label{tab:exec_times}\n\\end{table}"
     return latex_table
 
+# Function to generate a Markdown table
+def generate_markdown_table(averages):
+    markdown_table = "| Block Size | Average Execution Time |\n"
+    markdown_table += "|------------|------------------------|\n"
+    for block, avg in sorted(averages.items()):
+        markdown_table += f"| {block}        | {avg:.5f}               |\n"
+    return markdown_table
+
 # Main function
 def main():
     if len(sys.argv) < 3:
         print("Usage: python parse_log.py <log_file> <output_format>")
-        print("Output format options: plain, latex")
+        print("Output format options: plain, latex, markdown")
         sys.exit(1)
 
     file_path = sys.argv[1]
     output_format = sys.argv[2].lower()
 
-    if output_format not in ["plain", "latex"]:
-        print("Invalid output format. Please choose 'plain' or 'latex'.")
+    if output_format not in ["plain", "latex", "markdown"]:
+        print("Invalid output format. Please choose 'plain', 'latex', or 'markdown'.")
         sys.exit(1)
 
     try:
@@ -65,6 +73,9 @@ def main():
         elif output_format == "latex":
             latex_table = generate_latex_table(averages)
             print(latex_table)
+        elif output_format == "markdown":
+            markdown_table = generate_markdown_table(averages)
+            print(markdown_table)
     except FileNotFoundError:
         print(f"Error: File '{file_path}' not found.")
     except Exception as e:
