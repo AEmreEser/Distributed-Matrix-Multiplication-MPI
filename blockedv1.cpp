@@ -32,15 +32,14 @@ void init(double*& A, double*& B, double*& C) {
 }
 
 
-void multiply_blocked(const double* A_local, const double* B, double* C_local, int my_rows) {
+void multiply_blocked(const double* A_local, const double* B, double* C_local, int rows) {
     vector<double> B_block(BLOCK_SIZE * BLOCK_SIZE);
     
-    fill_n(C_local, my_rows * N, 0.0);
+    fill_n(C_local, rows * N, 0.0);
     
     for (int jj = 0; jj < N; jj += BLOCK_SIZE) {
         for (int kk = 0; kk < N; kk += BLOCK_SIZE) {
-            
-            for (int i = 0; i < my_rows; i++) {
+            for (int i = 0; i < rows; i++) {
                 for (int j = jj; j < min(jj + BLOCK_SIZE, N); j++) {
                     double sum = C_local[i * N + j];
                     #pragma unroll(3) // old value: 8
@@ -67,12 +66,12 @@ int main() {
 
     int rows_per_proc = N / size;
     int remainder = N % size;
-    int my_rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
-    int my_offset = rank * rows_per_proc + min(rank, remainder);
+    int rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
+    // int offset = rank * rows_per_proc + min(rank, remainder);
 
-    double* A_local = (double*)aligned_alloc(64, my_rows * N * sizeof(double));
+    double* A_local = (double*)aligned_alloc(64, rows * N * sizeof(double));
     double* B = (double*)aligned_alloc(64, N * N * sizeof(double));
-    double* C_local = (double*)aligned_alloc(64, my_rows * N * sizeof(double));
+    double* C_local = (double*)aligned_alloc(64, rows * N * sizeof(double));
     
     double *A = nullptr, *C = nullptr;
     if (rank == 0) {
@@ -91,14 +90,14 @@ int main() {
         displs[i] = (i * rows_per_proc + min(i, remainder)) * N;
     }
     
-    MPI_Scatterv(A, sendcounts.data(), displs.data(), MPI_DOUBLE, A_local, my_rows * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Scatterv(A, sendcounts.data(), displs.data(), MPI_DOUBLE, A_local, rows * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     MPI_Wait(&bcast_request, MPI_STATUS_IGNORE);
 
-    multiply_blocked(A_local, B, C_local, my_rows);
+    multiply_blocked(A_local, B, C_local, rows);
 
     MPI_Request gather_request;
-    MPI_Igatherv(C_local, my_rows * N, MPI_DOUBLE, C, sendcounts.data(), displs.data(), MPI_DOUBLE, 0, MPI_COMM_WORLD, &gather_request);
+    MPI_Igatherv(C_local, rows * N, MPI_DOUBLE, C, sendcounts.data(), displs.data(), MPI_DOUBLE, 0, MPI_COMM_WORLD, &gather_request);
 
     MPI_Wait(&gather_request, MPI_STATUS_IGNORE);
 
@@ -106,7 +105,7 @@ int main() {
 
     if (rank == 0) {
         cout << "=====================================================\n";
-        cout << "Optimized Distributed Matrix Multiplication\n";
+        cout << "Distributed Matrix Multiplication\n";
         cout << "Matrix Size N: " << N << "\n";
         cout << "Number of Processes: " << size << "\n";
         cout << "Block Size: " << BLOCK_SIZE << "\n";

@@ -28,12 +28,12 @@ int main() {
 
     int rows_per_proc = N / size;
     int remainder = N % size; 
-    int my_rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
-    int my_offset = rank * rows_per_proc + std::min(rank, remainder);
+    int rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
+    // int offset = rank * rows_per_proc + std::min(rank, remainder);
 
-    double* A_local = new double[my_rows * N];
+    double* A_local = new double[rows * N];
     double* B = new double[N * N];
-    double* C_local = new double[my_rows * N];
+    double* C_local = new double[rows * N];
     
     double *A = nullptr, *C = nullptr;
     if (rank == 0) {
@@ -54,10 +54,10 @@ int main() {
     }
 
     // We distribute each row of A to a different computer
-    MPI_Scatterv(A, sendcounts, displs, MPI_DOUBLE, A_local, my_rows * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Scatterv(A, sendcounts, displs, MPI_DOUBLE, A_local, rows * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     // THis is the actual mult. O(N^3) 
-    for (int i = 0; i < my_rows; i++) {
+    for (int i = 0; i < rows; i++) {
         for (int j = 0; j < N; j++) {
             C_local[i * N + j] = 0;
             for (int k = 0; k < N; k++) {
@@ -67,7 +67,7 @@ int main() {
     }
 
     // send the results to the master proc.
-    MPI_Gatherv(C_local, my_rows * N, MPI_DOUBLE,
+    MPI_Gatherv(C_local, rows * N, MPI_DOUBLE,
                 C, sendcounts, displs, MPI_DOUBLE,
                 0, MPI_COMM_WORLD);
 
