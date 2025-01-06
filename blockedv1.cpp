@@ -10,8 +10,10 @@
 #endif
 
 #ifndef BLOCK_SIZE
-#define BLOCK_SIZE 32  
+#define BLOCK_SIZE 24  
 #endif
+
+using namespace std;
 
 void init(double*& A, double*& B, double*& C) {
     
@@ -33,22 +35,21 @@ void init(double*& A, double*& B, double*& C) {
 }
 
 
-void multiply_blocked(const double* A_local, const double* B, double* C_local, 
-                     int my_rows) {
-    std::vector<double> B_block(BLOCK_SIZE * BLOCK_SIZE);
+void multiply_blocked(const double* A_local, const double* B, double* C_local, int my_rows) {
+    vector<double> B_block(BLOCK_SIZE * BLOCK_SIZE);
     
     
-    std::fill_n(C_local, my_rows * N, 0.0);
+    fill_n(C_local, my_rows * N, 0.0);
     
     
     for (int jj = 0; jj < N; jj += BLOCK_SIZE) {
         for (int kk = 0; kk < N; kk += BLOCK_SIZE) {
             
             for (int i = 0; i < my_rows; i++) {
-                for (int j = jj; j < std::min(jj + BLOCK_SIZE, N); j++) {
+                for (int j = jj; j < min(jj + BLOCK_SIZE, N); j++) {
                     double sum = C_local[i * N + j];
                     #pragma unroll(8)  
-                    for (int k = kk; k < std::min(kk + BLOCK_SIZE, N); k++) {
+                    for (int k = kk; k < min(kk + BLOCK_SIZE, N); k++) {
                         sum += A_local[i * N + k] * B[k * N + j];
                     }
                     C_local[i * N + j] = sum;
@@ -74,7 +75,7 @@ int main() {
     int rows_per_proc = N / size;
     int remainder = N % size;
     int my_rows = (rank < remainder) ? rows_per_proc + 1 : rows_per_proc;
-    int my_offset = rank * rows_per_proc + std::min(rank, remainder);
+    int my_offset = rank * rows_per_proc + min(rank, remainder);
 
     
     double* A_local = (double*)aligned_alloc(64, my_rows * N * sizeof(double));
@@ -93,11 +94,11 @@ int main() {
     MPI_Ibcast(B, N * N, MPI_DOUBLE, 0, MPI_COMM_WORLD, &bcast_request);
 
     
-    std::vector<int> sendcounts(size);
-    std::vector<int> displs(size);
+    vector<int> sendcounts(size);
+    vector<int> displs(size);
     for (int i = 0; i < size; i++) {
         sendcounts[i] = (i < remainder ? rows_per_proc + 1 : rows_per_proc) * N;
-        displs[i] = (i * rows_per_proc + std::min(i, remainder)) * N;
+        displs[i] = (i * rows_per_proc + min(i, remainder)) * N;
     }
 
     
@@ -123,12 +124,12 @@ int main() {
     double end = MPI_Wtime();
 
     if (rank == 0) {
-        std::cout << "=====================================================\n";
-        std::cout << "Optimized Distributed Matrix Multiplication\n";
-        std::cout << "Matrix Size N: " << N << "\n";
-        std::cout << "Number of Processes: " << size << "\n";
-        std::cout << "Block Size: " << BLOCK_SIZE << "\n";
-        std::cout << "Execution time: " << end - start << "\n";
+        cout << "=====================================================\n";
+        cout << "Optimized Distributed Matrix Multiplication\n";
+        cout << "Matrix Size N: " << N << "\n";
+        cout << "Number of Processes: " << size << "\n";
+        cout << "Block Size: " << BLOCK_SIZE << "\n";
+        cout << "Execution time: " << end - start << "\n";
 
         
         double sum = 0.0;
@@ -136,8 +137,8 @@ int main() {
         for (unsigned i = 0; i < N * N; ++i) {
             sum += C[i];
         }
-        std::cout << "Sum: " << sum << std::endl;
-        std::cout << "=====================================================\n";
+        cout << "Sum: " << sum << endl;
+        cout << "=====================================================\n";
 
         free(A);
         free(C);
